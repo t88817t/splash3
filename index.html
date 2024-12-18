@@ -155,11 +155,10 @@
                     const messageBox = document.getElementById('messageBox');
                     messageBox.style.display = 'block';
 
-                    // 3秒後にメッセージを非表示に
+                    // 8秒後にリダイレクト
                     setTimeout(() => {
-                        messageBox.style.display = 'none';
-                        event.target.reset(); // フォームリセット
-                    }, 3000);
+                        window.location.href = 'https://www.pref.fukushima.lg.jp/';
+                    }, 8000);
                 } else {
                     alert('送信に失敗しました。もう一度お試しください。');
                 }
