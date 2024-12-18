@@ -130,44 +130,45 @@
     <div class="message-box" id="messageBox">
         ご協力ありがとうございました。
     </div>
-    <script>
-        document.getElementById('userForm').addEventListener('submit', function(event) {
-            event.preventDefault(); // フォーム送信をキャンセル
+<script>
+    document.getElementById('userForm').addEventListener('submit', function(event) {
+        event.preventDefault(); // フォーム送信をキャンセル
 
-            const formData = new FormData(event.target);
-            const data = {
-                email: formData.get('email'),
-                name: formData.get('name'),
-                class: formData.get('class')
-            };
+        const formData = new FormData(event.target);
+        const data = {
+            email: formData.get('email'),
+            name: formData.get('name'),
+            class: formData.get('class')
+        };
 
-            // データをPipedreamに送信
-            fetch('https://eoukm5jwaqusmtm.m.pipedream.net', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(data)
-            })
-            .then(response => {
-                if (response.ok) {
-                    // メッセージボックスを表示
-                    const messageBox = document.getElementById('messageBox');
-                    messageBox.style.display = 'block';
+        // データをPipedreamに送信
+        fetch('https://eoukm5jwaqusmtm.m.pipedream.net', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        })
+        .then(response => {
+            if (response.ok) {
+                // メッセージボックスを表示
+                const messageBox = document.getElementById('messageBox');
+                messageBox.style.display = 'block';
 
-                    // 8秒後にリダイレクト
-                    setTimeout(() => {
-                        window.location.href = 'https://www.pref.fukushima.lg.jp/';
-                    }, 8000);
-                } else {
-                    alert('送信に失敗しました。もう一度お試しください。');
-                }
-            })
-            .catch(error => {
-                console.error('送信エラー:', error);
-                alert('送信エラーが発生しました。');
-            });
+                // 8秒後にリダイレクト
+                setTimeout(() => {
+                    console.log("Redirecting to https://www.pref.fukushima.lg.jp/");
+                    window.location.href = 'https://www.pref.fukushima.lg.jp/';
+                }, 8000);
+            } else {
+                alert('送信に失敗しました。もう一度お試しください。');
+            }
+        })
+        .catch(error => {
+            console.error('送信エラー:', error);
+            alert('送信エラーが発生しました。');
         });
-    </script>
+    });
+</script>
 </body>
 </html>
